@@ -29,7 +29,7 @@ function getYouTubeId(url: string) {
           <div class="aspect-w-16 aspect-h-9 w-full bg-gray-100 rounded-lg overflow-hidden shadow-md">
             {videoId ? (
               <iframe 
-                src={`https://www.youtube.com/embed/${videoId}`} 
+                src={`https://www.youtube.com/embed/${videoId}?enablejsapi=1`} 
                 title={item.data.title}
                 class="w-full h-[400px] border-none"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -52,3 +52,24 @@ function getYouTubeId(url: string) {
     )}
   </div>
 </Layout>
+
+<script>
+  // Listen for messages from YouTube iframes to pause background audio
+  window.addEventListener('message', (event) => {
+    if (!event.origin.includes("youtube.com")) return;
+    
+    try {
+      const data = JSON.parse(event.data);
+      // 'infoDelivery' with playerState 1 means the video has started playing
+      if (data.event === 'infoDelivery' && data.info && data.info.playerState === 1) {
+        const audio = document.getElementById('bg-music') as HTMLAudioElement;
+        if (audio && !audio.paused) {
+          audio.pause();
+        }
+      }
+    } catch (e) {
+      // Ignore non-JSON messages
+    }
+  });
+</script>
+

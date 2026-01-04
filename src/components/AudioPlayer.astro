@@ -63,8 +63,11 @@
         } else {
           audio.pause();
         }
-        updateIcons();
       });
+
+      // Update icons when audio state changes (e.g. from external scripts or controls)
+      audio.addEventListener('play', updateIcons);
+      audio.addEventListener('pause', updateIcons);
 
       // Simple progress bar update
       audio.addEventListener('timeupdate', () => {
