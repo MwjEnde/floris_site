@@ -8,6 +8,8 @@ const concertsCollection = defineCollection({
         time: z.string().optional(),
         location: z.string().optional(),
         ticketLink: z.string().optional(),
+        metaTitle: z.string().optional(),
+        metaDescription: z.string().optional(),
     }),
 });
 
@@ -16,6 +18,8 @@ const biographyCollection = defineCollection({
     schema: z.object({
         title: z.string(),
         portrait: z.string().optional(),
+        metaTitle: z.string().optional(),
+        metaDescription: z.string().optional(),
     }),
 });
 
@@ -25,6 +29,8 @@ const repertoireCollection = defineCollection({
         title: z.string(),
         youtubeUrl: z.string(),
         composer: z.string().optional(),
+        metaTitle: z.string().optional(),
+        metaDescription: z.string().optional(),
     }),
 });
 
@@ -36,6 +42,8 @@ const homeCollection = defineCollection({
         heroImage: z.string(),
         ctaText: z.string(),
         ctaLink: z.string(),
+        metaTitle: z.string().optional(),
+        metaDescription: z.string().optional(),
     }),
 });
 
@@ -47,6 +55,8 @@ const uitvaartCollection = defineCollection({
         ctaText: z.string(),
         ctaButtonText: z.string(),
         ctaButtonLink: z.string(),
+        metaTitle: z.string().optional(),
+        metaDescription: z.string().optional(),
     }),
 });
 
@@ -60,6 +70,8 @@ const contactCollection = defineCollection({
         formAction: z.string(),
         successMessage: z.string(),
         errorMessage: z.string(),
+        metaTitle: z.string().optional(),
+        metaDescription: z.string().optional(),
     }),
 });
 

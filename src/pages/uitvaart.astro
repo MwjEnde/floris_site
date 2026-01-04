@@ -8,7 +8,11 @@ const data = uitvaartEntry.data;
 const { Content } = await uitvaartEntry.render();
 ---
 
-<Layout title="Uitvaart Muziek">
+<Layout 
+  title={data.metaTitle || data.title} 
+  description={data.metaDescription}
+  schemaType="LocalBusiness"
+>
   <article class="prose prose-lg prose-serif mx-auto text-justify">
     <h1 class="text-4xl font-serif font-light text-center mb-12">{data.title}</h1>
     

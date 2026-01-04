@@ -7,7 +7,11 @@ const homeData = homeEntry.data;
 const { Content } = await homeEntry.render();
 ---
 
-<Layout title="Home">
+<Layout 
+  title={homeData.metaTitle} 
+  description={homeData.metaDescription}
+  schemaType="Person"
+>
 	<section class="flex flex-col items-center justify-center text-center space-y-8 min-h-[80vh]">
     <div class="w-full max-w-4xl shadow-xl mb-8">
       <img src={import.meta.env.BASE_URL.replace(/\/$/, "") + homeData.heroImage} alt="Floris aan de piano" class="w-full h-auto" />

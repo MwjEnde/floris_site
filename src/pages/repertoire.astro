@@ -16,9 +16,11 @@ function getYouTubeId(url: string) {
   const match = url.match(regExp);
   return (match && match[2].length === 11) ? match[2] : null;
 }
+const metaTitle = "Repertoire & Opnames | Floris van den Ende";
+const metaDescription = "Bekijk en beluister het repertoire van Floris van den Ende, inclusief live opnames van werken van Mendelssohn, Bach en meer.";
 ---
 
-<Layout title="Repertoire">
+<Layout title={metaTitle} description={metaDescription}>
   <h1 class="text-4xl font-serif font-light text-center mb-16">Repertoire & Opnames</h1>
 
   <div class="space-y-16 max-w-3xl mx-auto">

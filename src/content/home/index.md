@@ -2,6 +2,8 @@
 title: Floris van den Ende
 subtitle: Muziek is de stilte tussen de noten.
 heroImage: /images/Foris_piano_neutral.jpg
+metaTitle: "Floris van den Ende | Klassiek Pianist"
+metaDescription: "Welkom op de officiële website van Floris van den Ende. Klassiek pianist voor concerten, ceremonies en uitvaarten."
 ctaText: Bekijk Agenda
 ctaLink: /concerten
 ---

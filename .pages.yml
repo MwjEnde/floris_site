@@ -29,6 +29,12 @@ content:
       - name: ticketLink
         label: Ticket Link
         type: string
+      - name: metaTitle
+        label: SEO Title
+        type: string
+      - name: metaDescription
+        label: SEO Description
+        type: string
   - name: repertoire
     label: Repertoire
     path: src/content/repertoire
@@ -47,6 +53,12 @@ content:
         label: YouTube URL
         type: string
         required: true
+      - name: metaTitle
+        label: SEO Title
+        type: string
+      - name: metaDescription
+        label: SEO Description
+        type: string
   - name: home
     label: Home Page
     path: src/content/home
@@ -73,6 +85,12 @@ content:
       - name: body
         label: Short Bio (Text)
         type: rich-text
+      - name: metaTitle
+        label: SEO Title
+        type: string
+      - name: metaDescription
+        label: SEO Description
+        type: string
   - name: uitvaart
     label: Uitvaart (Funeral)
     path: src/content/uitvaart
@@ -98,6 +116,12 @@ content:
         type: string
       - name: ctaButtonLink
         label: Button Link
+        type: string
+      - name: metaTitle
+        label: SEO Title
+        type: string
+      - name: metaDescription
+        label: SEO Description
         type: string
   - name: contact
     label: Contact Page
@@ -128,6 +152,12 @@ content:
       - name: errorMessage
         label: Error Message
         type: string
+      - name: metaTitle
+        label: SEO Title
+        type: string
+      - name: metaDescription
+        label: SEO Description
+        type: string
   - name: biography
     label: Biography
     path: src/content/biography
@@ -145,6 +175,12 @@ content:
       - name: body
         label: Biography Text
         type: rich-text
+      - name: metaTitle
+        label: SEO Title
+        type: string
+      - name: metaDescription
+        label: SEO Description
+        type: string
 settings:
   backend:
     name: github

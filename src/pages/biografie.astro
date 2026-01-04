@@ -7,7 +7,11 @@ const bio = bioEntries[0]; // Assuming single entry for now as discussed
 const { Content } = await bio.render();
 ---
 
-<Layout title="Biografie">
+<Layout 
+  title={bio.data.metaTitle || bio.data.title} 
+  description={bio.data.metaDescription}
+  schemaType="Person"
+>
   <article class="prose prose-lg prose-serif mx-auto text-justify">
     <h1 class="text-4xl font-serif font-light text-center mb-12">{bio.data.title}</h1>
     

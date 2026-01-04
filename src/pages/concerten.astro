@@ -4,9 +4,11 @@ import { getCollection } from 'astro:content';
 
 const concerts = await getCollection('concerts');
 const sortedConcerts = concerts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const metaTitle = "Agenda & Concerten | Floris van den Ende";
+const metaDescription = "Bekijk de agenda van Floris van den Ende voor aankomende concerten en optredens.";
 ---
 
-<Layout title="Concerten">
+<Layout title={metaTitle} description={metaDescription}>
   <h1 class="text-4xl font-serif font-light text-center mb-16">Concertagenda</h1>
 
   <div class="space-y-12 max-w-2xl mx-auto">

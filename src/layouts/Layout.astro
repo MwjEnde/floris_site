@@ -5,21 +5,75 @@ import Header from '../components/Header.astro';
 import AudioPlayer from '../components/AudioPlayer.astro';
 
 interface Props {
-	title: string;
+	title?: string;
+  description?: string;
+  image?: string;
+  canonicalURL?: URL;
+  schemaType?: 'MusicGroup' | 'Person' | 'LocalBusiness';
 }
 
-const { title } = Astro.props;
+const { 
+  title, 
+  description = "Floris van den Ende - Klassiek pianist voor concerten, ceremonies en uitvaarten in Amsterdam, Rotterdam en Den Haag.",
+  image = "/images/floris_piano_neutral.jpg",
+  canonicalURL = new URL(Astro.url.pathname, Astro.site),
+  schemaType = 'Person'
+} = Astro.props;
+
+const siteTitle = title ? `${title} | Floris van den Ende` : "Floris van den Ende | Klassiek Pianist";
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": schemaType,
+  "name": "Floris van den Ende",
+  "url": Astro.site?.toString(),
+  "image": new URL(image, Astro.site).toString(),
+  "description": description,
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "The Hague",
+    "addressRegion": "Zuid-Holland",
+    "addressCountry": "NL"
+  },
+  "sameAs": [
+    "https://www.youtube.com/@florisvandenende"
+  ]
+};
 ---
 
 <!doctype html>
 <html lang="nl">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Website van Floris, klassiek pianist" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>{title} | Floris - Klassiek Pianist</title>
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Primary Meta Tags -->
+		<title>{siteTitle}</title>
+		<meta name="title" content={siteTitle} />
+		<meta name="description" content={description} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:title" content={siteTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, Astro.site)} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={Astro.url} />
+    <meta property="twitter:title" content={siteTitle} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL(image, Astro.site)} />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">

@@ -6,7 +6,11 @@ const contactEntries = await getCollection('contact');
 const contactData = contactEntries[0].data;
 ---
 
-<Layout title={contactData.title}>
+<Layout 
+  title={contactData.metaTitle || contactData.title} 
+  description={contactData.metaDescription}
+  schemaType="LocalBusiness"
+>
   <div class="max-w-xl mx-auto text-center space-y-12">
     <h1 class="text-4xl font-serif font-light">{contactData.title}</h1>
     
