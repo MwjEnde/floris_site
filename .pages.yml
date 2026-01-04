@@ -1,6 +1,9 @@
 media:
   input: public
   output: /
+  categories:
+    - images
+    - audio
 content:
   - name: concerts
     label: Concerts
