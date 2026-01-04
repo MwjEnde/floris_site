@@ -1,6 +1,6 @@
 media:
-  input: src/assets/images
-  output: /assets/images
+  input: public
+  output: /
   categories:
     - images
     - audio
