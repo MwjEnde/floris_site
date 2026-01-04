@@ -74,7 +74,7 @@ const contactData = contactEntries[0].data;
           if (response.ok) {
             status.textContent = successMsg;
             status.classList.remove('hidden', 'text-red-500');
-            status.classList.add('text-green-600');
+            status.classList.add('text-primary/80');
             form.reset();
             btn.textContent = 'Verstuurd';
           } else {
