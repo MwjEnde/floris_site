@@ -73,6 +73,9 @@ content:
       - name: ctaLink
         label: Button Link
         type: string
+      - name: body
+        label: Short Bio (Text)
+        type: rich-text
   - name: biography
     label: Biography
     path: src/content/biography
