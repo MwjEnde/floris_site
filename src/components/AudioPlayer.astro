@@ -1,16 +1,34 @@
 ---
 ---
-<div transition:persist="audio-player" class="fixed bottom-6 right-6 z-50">
-  <button id="audio-toggle" class="bg-primary text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center hover:bg-opacity-90 transition-all duration-300 focus:outline-none" aria-label="Play/Pause Music">
-    <!-- Play Icon -->
-    <svg id="icon-play" class="w-5 h-5 ml-1" fill="currentColor" viewBox="0 0 24 24">
-      <path d="M8 5v14l11-7z" />
-    </svg>
-    <!-- Pause Icon (Initially Hidden) -->
-    <svg id="icon-pause" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 24 24">
-      <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
-    </svg>
-  </button>
+<div transition:persist="audio-player" class="fixed bottom-0 left-0 w-full bg-white/95 backdrop-blur-sm border-t border-primary/10 z-50 py-3 px-6 shadow-[0_-4px_20px_-10px_rgba(0,0,0,0.1)]">
+  <div class="max-w-6xl mx-auto flex items-center justify-between gap-4">
+    <div class="flex items-center gap-4">
+      <button id="audio-toggle" class="bg-primary text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-opacity-90 transition-all duration-300 focus:outline-none" aria-label="Play/Pause Music">
+        <!-- Play Icon -->
+        <svg id="icon-play" class="w-4 h-4 ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M8 5v14l11-7z" />
+        </svg>
+        <!-- Pause Icon (Initially Hidden) -->
+        <svg id="icon-pause" class="w-4 h-4 hidden" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+        </svg>
+      </button>
+      <div class="hidden sm:block">
+        <p class="text-xs font-sans tracking-widest uppercase text-primary/60 mb-0.5">Audiospeler</p>
+        <p class="text-sm font-serif italic text-primary">Beluister opnames van Floris van den Ende</p>
+      </div>
+    </div>
+    
+    <div class="flex-grow max-w-xs hidden md:block px-8">
+        <div class="h-0.5 w-full bg-primary/10 rounded-full relative">
+            <div id="audio-progress" class="absolute left-0 top-0 h-full bg-primary/40 rounded-full transition-all duration-300" style="width: 0%"></div>
+        </div>
+    </div>
+
+    <div class="text-[10px] font-sans tracking-tighter uppercase text-primary/40 hidden lg:block">
+        Live Opname
+    </div>
+  </div>
 
   <audio id="bg-music" loop>
     <source src={import.meta.env.BASE_URL.replace(/\/$/, "") + "/audio/sample.mp3"} type="audio/mpeg">
@@ -23,25 +41,39 @@
     const btn = document.getElementById('audio-toggle');
     const iconPlay = document.getElementById('icon-play');
     const iconPause = document.getElementById('icon-pause');
+    const progress = document.getElementById('audio-progress');
 
     if (audio && btn && iconPlay && iconPause) {
-      // Restore state if playing (optional, can be complex with ViewTransitions, simple check for now)
-      if (!audio.paused) {
-         iconPlay.classList.add('hidden');
-         iconPause.classList.remove('hidden');
-      }
+      // Update icon state based on current audio playing status
+      const updateIcons = () => {
+        if (!audio.paused) {
+          iconPlay.classList.add('hidden');
+          iconPause.classList.remove('hidden');
+        } else {
+          iconPlay.classList.remove('hidden');
+          iconPause.classList.add('hidden');
+        }
+      };
+
+      updateIcons();
 
       btn.addEventListener('click', () => {
         if (audio.paused) {
           audio.play().catch(e => console.error("Playback failed:", e));
-          iconPlay.classList.add('hidden');
-          iconPause.classList.remove('hidden');
         } else {
           audio.pause();
-          iconPlay.classList.remove('hidden');
-          iconPause.classList.add('hidden');
+        }
+        updateIcons();
+      });
+
+      // Simple progress bar update
+      audio.addEventListener('timeupdate', () => {
+        if (progress) {
+          const percent = (audio.currentTime / audio.duration) * 100;
+          progress.style.width = `${percent}%`;
         }
       });
     }
   });
 </script>
+
