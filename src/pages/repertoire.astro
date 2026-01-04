@@ -3,6 +3,12 @@ import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 
 const repertoire = await getCollection('repertoire');
+const sortedRepertoire = repertoire.sort((a, b) => {
+  // Simplest way to force Mendelssohn first without adding fields: sort by title descending (V comes before P? No. Variations vs Partita. V > P. So descending title works)
+  // Or better, explicit check.
+  if (a.data.composer?.includes('Mendelssohn')) return -1;
+  return 1;
+});
 
 // Helper to extract video ID
 function getYouTubeId(url: string) {
@@ -16,7 +22,7 @@ function getYouTubeId(url: string) {
   <h1 class="text-4xl font-serif font-light text-center mb-16">Repertoire & Opnames</h1>
 
   <div class="space-y-16 max-w-3xl mx-auto">
-    {repertoire.map(item => {
+    {sortedRepertoire.map(item => {
       const videoId = getYouTubeId(item.data.youtubeUrl);
       return (
         <article class="space-y-4">

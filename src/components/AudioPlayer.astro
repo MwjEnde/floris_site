@@ -1,16 +1,47 @@
 ---
 ---
-<div transition:persist="audio-player" class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 p-4 shadow-lg z-40 transform translate-y-[calc(100%-3rem)] hover:translate-y-0 transition-transform duration-300 group">
-  <div class="max-w-4xl mx-auto flex items-center justify-between">
-    <div class="text-sm font-serif italic text-gray-600">
-      <span class="font-bold not-italic">Nu aan het spelen:</span> Nocturne No. 2
-    </div>
-    <audio controls class="w-2/3 h-8">
-      <source src="/assets/audio/sample.mp3" type="audio/mpeg">
-      Your browser does not support the audio element.
-    </audio>
-  </div>
-  <div class="absolute top-0 right-4 -mt-8 bg-white px-3 py-1 text-xs border border-gray-100 shadow-sm rounded-t cursor-pointer group-hover:hidden">
-    Music Player
-  </div>
+<div transition:persist="audio-player" class="fixed bottom-6 right-6 z-50">
+  <button id="audio-toggle" class="bg-primary text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center hover:bg-opacity-90 transition-all duration-300 focus:outline-none" aria-label="Play/Pause Music">
+    <!-- Play Icon -->
+    <svg id="icon-play" class="w-5 h-5 ml-1" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M8 5v14l11-7z" />
+    </svg>
+    <!-- Pause Icon (Initially Hidden) -->
+    <svg id="icon-pause" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+    </svg>
+  </button>
+
+  <audio id="bg-music" loop>
+    <source src={import.meta.env.BASE_URL + "/assets/audio/sample.mp3"} type="audio/mpeg">
+  </audio>
 </div>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const audio = document.getElementById('bg-music') as HTMLAudioElement;
+    const btn = document.getElementById('audio-toggle');
+    const iconPlay = document.getElementById('icon-play');
+    const iconPause = document.getElementById('icon-pause');
+
+    if (audio && btn && iconPlay && iconPause) {
+      // Restore state if playing (optional, can be complex with ViewTransitions, simple check for now)
+      if (!audio.paused) {
+         iconPlay.classList.add('hidden');
+         iconPause.classList.remove('hidden');
+      }
+
+      btn.addEventListener('click', () => {
+        if (audio.paused) {
+          audio.play().catch(e => console.error("Playback failed:", e));
+          iconPlay.classList.add('hidden');
+          iconPause.classList.remove('hidden');
+        } else {
+          audio.pause();
+          iconPlay.classList.remove('hidden');
+          iconPause.classList.add('hidden');
+        }
+      });
+    }
+  });
+</script>
