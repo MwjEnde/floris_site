@@ -4,11 +4,34 @@
   --font-serif: "Cormorant Garamond", serif;
   --font-body: "Lora", serif;
   --font-sans: "Lora", serif;
-  
+
   --color-primary: #1a1a1a;
   --color-background: #ffffff;
+  --color-accent: #f3f4f6;
+  /* Subtle gray for backgrounds/hovers */
+
+  --text-base: 1.125rem;
+  /* Slightly larger base text for readability (18px) */
+  --leading-relaxed: 1.8;
+}
+
+/* Custom Utilities for Classical Feel */
+@layer utilities {
+  .tracking-classical {
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
 }
 
 body {
-  @apply bg-background text-primary font-body;
+  @apply bg-background text-primary font-body text-lg leading-relaxed antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-serif text-primary font-light;
 }
