@@ -18,28 +18,25 @@ import Layout from '../layouts/Layout.astro';
     </div>
 
     <div class="pt-8">
-      <form class="space-y-6 text-left" action="https://formspree.io/f/your-form-id" method="POST">
+      <form class="space-y-6 text-left" action="https://formspree.io/f/PLACEHOLDER" method="POST">
         <div>
-          <label for="name" class="block text-xs uppercase tracking-widest text-gray-500 mb-2">Naam</label>
-          <input type="text" id="name" name="name" class="w-full border-b border-gray-200 py-2 focus:outline-none focus:border-gray-500 transition-colors font-serif bg-transparent" required />
+          <label for="name" class="block text-xs uppercase tracking-widest text-primary/60 mb-2">Naam</label>
+          <input type="text" id="name" name="name" class="w-full border-b border-primary/20 py-2 focus:outline-none focus:border-primary transition-colors font-serif bg-transparent" required />
         </div>
         <div>
-          <label for="email" class="block text-xs uppercase tracking-widest text-gray-500 mb-2">Email</label>
-          <input type="email" id="email" name="email" class="w-full border-b border-gray-200 py-2 focus:outline-none focus:border-gray-500 transition-colors font-serif bg-transparent" required />
+          <label for="email" class="block text-xs uppercase tracking-widest text-primary/60 mb-2">Email</label>
+          <input type="email" id="email" name="email" class="w-full border-b border-primary/20 py-2 focus:outline-none focus:border-primary transition-colors font-serif bg-transparent" required />
         </div>
         <div>
-          <label for="message" class="block text-xs uppercase tracking-widest text-gray-500 mb-2">Bericht</label>
-          <textarea id="message" name="message" rows="4" class="w-full border-b border-gray-200 py-2 focus:outline-none focus:border-gray-500 transition-colors font-serif bg-transparent resize-none" required></textarea>
+          <label for="message" class="block text-xs uppercase tracking-widest text-primary/60 mb-2">Bericht</label>
+          <textarea id="message" name="message" rows="5" class="w-full border-b border-primary/20 py-2 focus:outline-none focus:border-primary transition-colors font-serif bg-transparent resize-none" required></textarea>
         </div>
-        <div class="text-center pt-4">
-          <button type="submit" class="border border-primary px-10 py-3 text-xs uppercase tracking-widest hover:bg-primary hover:text-white transition-colors duration-300">
+        <div class="text-center pt-8">
+          <button type="submit" class="border border-primary px-12 py-4 text-xs uppercase tracking-widest hover:bg-primary hover:text-white transition-all duration-300">
             Versturen
           </button>
         </div>
       </form>
-      <p class="text-xs text-gray-400 mt-4 text-center">
-        * Dit formulier is een demo. Configureer Formspree of vergelijkbaar voor functionaliteit.
-      </p>
     </div>
   </div>
 </Layout>
