@@ -50,6 +50,29 @@ content:
         label: YouTube URL
         type: string
         required: true
+  - name: home
+    label: Home Page
+    path: src/content/home
+    type: collection
+    view:
+      fields: [title]
+    fields:
+      - name: title
+        label: Main Title
+        type: string
+        required: true
+      - name: subtitle
+        label: Subtitle (Quote)
+        type: string
+      - name: heroImage
+        label: Hero Image
+        type: image
+      - name: ctaText
+        label: Button Text
+        type: string
+      - name: ctaLink
+        label: Button Link
+        type: string
   - name: biography
     label: Biography
     path: src/content/biography

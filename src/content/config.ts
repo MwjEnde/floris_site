@@ -28,8 +28,20 @@ const repertoireCollection = defineCollection({
     }),
 });
 
+const homeCollection = defineCollection({
+    type: 'content',
+    schema: z.object({
+        title: z.string(),
+        subtitle: z.string(),
+        heroImage: z.string(),
+        ctaText: z.string(),
+        ctaLink: z.string(),
+    }),
+});
+
 export const collections = {
     concerts: concertsCollection,
     biography: biographyCollection,
     repertoire: repertoireCollection,
+    home: homeCollection,
 };
