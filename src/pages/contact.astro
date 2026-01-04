@@ -1,24 +1,28 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const contactEntries = await getCollection('contact');
+const contactData = contactEntries[0].data;
 ---
 
-<Layout title="Contact">
+<Layout title={contactData.title}>
   <div class="max-w-xl mx-auto text-center space-y-12">
-    <h1 class="text-4xl font-serif font-light">Contact</h1>
+    <h1 class="text-4xl font-serif font-light">{contactData.title}</h1>
     
     <div class="space-y-2">
-      <p class="text-lg font-serif italic text-gray-600">Voor boekingen en informatie</p>
+      <p class="text-lg font-serif italic text-gray-600">{contactData.subtitle}</p>
       <div class="h-px w-12 bg-gray-200 mx-auto my-4"></div>
       <p class="font-body text-primary">
-        <a href="mailto:info@floris-pianist.nl" class="hover:text-gray-500 transition-colors">info@floris-pianist.nl</a>
+        <a href={`mailto:${contactData.email}`} class="hover:text-gray-500 transition-colors">{contactData.email}</a>
       </p>
       <p class="font-body text-primary">
-        +31 (0)6 1234 5678
+        {contactData.phone}
       </p>
     </div>
 
     <div class="pt-8">
-      <form id="contact-form" class="space-y-6 text-left" action="https://formspree.io/f/mzdzkwyj" method="POST">
+      <form id="contact-form" class="space-y-6 text-left" action={contactData.formAction} method="POST">
         <div>
           <label for="name" class="block text-xs uppercase tracking-widest text-primary/60 mb-2">Naam</label>
           <input type="text" id="name" name="name" class="w-full border-b border-primary/20 py-2 focus:outline-none focus:border-primary transition-colors font-serif bg-transparent" required />
@@ -40,7 +44,7 @@ import Layout from '../layouts/Layout.astro';
       </form>
     </div>
 
-<script>
+<script define:vars={{ successMsg: contactData.successMessage, errorMsg: contactData.errorMessage }}>
   document.addEventListener('astro:page-load', () => {
     const form = document.getElementById('contact-form') as HTMLFormElement;
     const status = document.getElementById('form-status');
@@ -68,7 +72,7 @@ import Layout from '../layouts/Layout.astro';
           });
 
           if (response.ok) {
-            status.textContent = "Bedankt voor uw bericht. Ik neem zo spoedig mogelijk contact op.";
+            status.textContent = successMsg;
             status.classList.remove('hidden', 'text-red-500');
             status.classList.add('text-green-600');
             form.reset();
@@ -78,7 +82,7 @@ import Layout from '../layouts/Layout.astro';
              if (Object.hasOwn(result, 'errors')) {
                 status.textContent = result["errors"].map((error: any) => error["message"]).join(", ");
              } else {
-                status.textContent = "Er is iets misgegaan. Probeer het later opnieuw.";
+                status.textContent = errorMsg;
              }
             status.classList.remove('hidden');
             status.classList.add('text-red-500');

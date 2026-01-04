@@ -50,10 +50,24 @@ const uitvaartCollection = defineCollection({
     }),
 });
 
+const contactCollection = defineCollection({
+    type: 'content',
+    schema: z.object({
+        title: z.string(),
+        subtitle: z.string(),
+        email: z.string(),
+        phone: z.string(),
+        formAction: z.string(),
+        successMessage: z.string(),
+        errorMessage: z.string(),
+    }),
+});
+
 export const collections = {
     concerts: concertsCollection,
     biography: biographyCollection,
     repertoire: repertoireCollection,
     home: homeCollection,
     uitvaart: uitvaartCollection,
+    contact: contactCollection,
 };
