@@ -1,0 +1,53 @@
+---
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/concerten', label: 'Concerten' },
+  { href: '/biografie', label: 'Biografie' },
+  { href: '/uitvaart', label: 'Uitvaart' },
+  { href: '/contact', label: 'Contact' },
+];
+---
+
+<header class="py-8 px-6 border-b border-gray-100 flex justify-between items-center max-w-6xl mx-auto w-full">
+  <a href="/" class="text-3xl font-serif font-light tracking-wide uppercase">Floris</a>
+  
+  <nav class="hidden md:flex gap-8">
+    {links.map(link => (
+      <a href={link.href} class="text-sm uppercase tracking-widest hover:text-gray-500 transition-colors font-sans">{link.label}</a>
+    ))}
+  </nav>
+
+  <button id="mobile-menu-toggle" class="md:hidden p-2 text-2xl" aria-label="Menu">
+    &#9776;
+  </button>
+
+  <div id="mobile-menu" class="fixed inset-0 bg-white z-50 flex flex-col items-center justify-center gap-8 text-xl transform translate-x-full transition-transform duration-300 md:hidden">
+    <button id="mobile-menu-close" class="absolute top-8 right-8 text-3xl">&times;</button>
+    {links.map(link => (
+      <a href={link.href} class="text-2xl font-serif">{link.label}</a>
+    ))}
+  </div>
+</header>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const toggle = document.getElementById('mobile-menu-toggle');
+    const close = document.getElementById('mobile-menu-close');
+    const menu = document.getElementById('mobile-menu');
+
+    if (toggle && close && menu) {
+      toggle.addEventListener('click', () => {
+        menu.classList.remove('translate-x-full');
+      });
+      close.addEventListener('click', () => {
+        menu.classList.add('translate-x-full');
+      });
+      // Close menu when a link is clicked
+      menu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            menu.classList.add('translate-x-full');
+        });
+      });
+    }
+  });
+</script>

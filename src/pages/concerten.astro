@@ -1,0 +1,43 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const concerts = await getCollection('concerts');
+const sortedConcerts = concerts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<Layout title="Concerten">
+  <h1 class="text-4xl font-serif font-light text-center mb-16">Concertagenda</h1>
+
+  <div class="space-y-12 max-w-2xl mx-auto">
+    {sortedConcerts.map(concert => (
+      <article class="border-b border-gray-100 pb-12 last:border-0 hover:bg-gray-50 transition-colors p-6 -mx-6 rounded-lg group">
+        <div class="flex flex-col md:flex-row md:items-baseline gap-4 mb-4">
+          <time datetime={concert.data.date.toISOString()} class="text-sm font-sans uppercase tracking-widest text-gray-500 min-w-[120px]">
+            {concert.data.date.toLocaleDateString('nl-NL', { year: 'numeric', month: 'long', day: 'numeric' })}
+          </time>
+          <h2 class="text-2xl font-serif group-hover:text-gray-600 transition-colors">{concert.data.title}</h2>
+        </div>
+        
+        <div class="md:pl-[136px] space-y-4">
+          <div class="text-gray-600 font-serif italic">
+            {concert.data.time && <span>{concert.data.time} uur</span>}
+            {concert.data.location && <span> &mdash; {concert.data.location}</span>}
+          </div>
+          <div class="prose prose-sm text-gray-600 font-body">
+            {concert.body}
+          </div>
+          {concert.data.ticketLink && (
+            <div class="pt-2">
+              <a href={concert.data.ticketLink} target="_blank" class="text-sm border-b border-primary pb-0.5 hover:border-gray-400 transition-colors">Tickets Bestellen &rarr;</a>
+            </div>
+          )}
+        </div>
+      </article>
+    ))}
+
+    {concerts.length === 0 && (
+      <p class="text-center text-gray-500 italic">Er zijn momenteel geen concerten gepland.</p>
+    )}
+  </div>
+</Layout>

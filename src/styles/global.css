@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Cormorant Garamond", serif;
+  --font-body: "Lora", serif;
+  --font-sans: "Lora", serif;
+  
+  --color-primary: #1a1a1a;
+  --color-background: #ffffff;
+}
+
+body {
+  @apply bg-background text-primary font-body;
+}

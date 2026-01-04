@@ -1,0 +1,16 @@
+---
+---
+<div transition:persist="audio-player" class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 p-4 shadow-lg z-40 transform translate-y-[calc(100%-3rem)] hover:translate-y-0 transition-transform duration-300 group">
+  <div class="max-w-4xl mx-auto flex items-center justify-between">
+    <div class="text-sm font-serif italic text-gray-600">
+      <span class="font-bold not-italic">Nu aan het spelen:</span> Nocturne No. 2
+    </div>
+    <audio controls class="w-2/3 h-8">
+      <source src="/assets/audio/sample.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+  <div class="absolute top-0 right-4 -mt-8 bg-white px-3 py-1 text-xs border border-gray-100 shadow-sm rounded-t cursor-pointer group-hover:hidden">
+    Music Player
+  </div>
+</div>

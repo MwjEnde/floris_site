@@ -1,0 +1,19 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Home">
+	<section class="flex flex-col items-center justify-center text-center space-y-8 min-h-[60vh]">
+		<h1 class="text-5xl md:text-7xl font-serif font-light text-primary tracking-tight">
+			Floris
+		</h1>
+		<p class="text-xl md:text-2xl font-serif italic text-gray-600 max-w-2xl leading-relaxed">
+			"Muziek is de stilte tussen de noten."
+		</p>
+    <div class="pt-8">
+      <a href="/concerten" class="inline-block border border-primary px-8 py-3 text-sm uppercase tracking-widest hover:bg-primary hover:text-white transition-colors duration-300">
+        Bekijk Agenda
+      </a>
+    </div>
+	</section>
+</Layout>

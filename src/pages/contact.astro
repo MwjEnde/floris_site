@@ -1,0 +1,45 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Contact">
+  <div class="max-w-xl mx-auto text-center space-y-12">
+    <h1 class="text-4xl font-serif font-light">Contact</h1>
+    
+    <div class="space-y-2">
+      <p class="text-lg font-serif italic text-gray-600">Voor boekingen en informatie</p>
+      <div class="h-px w-12 bg-gray-200 mx-auto my-4"></div>
+      <p class="font-body text-primary">
+        <a href="mailto:info@floris-pianist.nl" class="hover:text-gray-500 transition-colors">info@floris-pianist.nl</a>
+      </p>
+      <p class="font-body text-primary">
+        +31 (0)6 1234 5678
+      </p>
+    </div>
+
+    <div class="pt-8">
+      <form class="space-y-6 text-left" action="https://formspree.io/f/your-form-id" method="POST">
+        <div>
+          <label for="name" class="block text-xs uppercase tracking-widest text-gray-500 mb-2">Naam</label>
+          <input type="text" id="name" name="name" class="w-full border-b border-gray-200 py-2 focus:outline-none focus:border-gray-500 transition-colors font-serif bg-transparent" required />
+        </div>
+        <div>
+          <label for="email" class="block text-xs uppercase tracking-widest text-gray-500 mb-2">Email</label>
+          <input type="email" id="email" name="email" class="w-full border-b border-gray-200 py-2 focus:outline-none focus:border-gray-500 transition-colors font-serif bg-transparent" required />
+        </div>
+        <div>
+          <label for="message" class="block text-xs uppercase tracking-widest text-gray-500 mb-2">Bericht</label>
+          <textarea id="message" name="message" rows="4" class="w-full border-b border-gray-200 py-2 focus:outline-none focus:border-gray-500 transition-colors font-serif bg-transparent resize-none" required></textarea>
+        </div>
+        <div class="text-center pt-4">
+          <button type="submit" class="border border-primary px-10 py-3 text-xs uppercase tracking-widest hover:bg-primary hover:text-white transition-colors duration-300">
+            Versturen
+          </button>
+        </div>
+      </form>
+      <p class="text-xs text-gray-400 mt-4 text-center">
+        * Dit formulier is een demo. Configureer Formspree of vergelijkbaar voor functionaliteit.
+      </p>
+    </div>
+  </div>
+</Layout>
