@@ -19,7 +19,17 @@ const biographyCollection = defineCollection({
     }),
 });
 
+const repertoireCollection = defineCollection({
+    type: 'content',
+    schema: z.object({
+        title: z.string(),
+        youtubeUrl: z.string(),
+        composer: z.string().optional(),
+    }),
+});
+
 export const collections = {
     concerts: concertsCollection,
     biography: biographyCollection,
+    repertoire: repertoireCollection,
 };

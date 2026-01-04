@@ -1,0 +1,48 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const repertoire = await getCollection('repertoire');
+
+// Helper to extract video ID
+function getYouTubeId(url: string) {
+  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+  const match = url.match(regExp);
+  return (match && match[2].length === 11) ? match[2] : null;
+}
+---
+
+<Layout title="Repertoire">
+  <h1 class="text-4xl font-serif font-light text-center mb-16">Repertoire & Opnames</h1>
+
+  <div class="space-y-16 max-w-3xl mx-auto">
+    {repertoire.map(item => {
+      const videoId = getYouTubeId(item.data.youtubeUrl);
+      return (
+        <article class="space-y-4">
+          <div class="aspect-w-16 aspect-h-9 w-full bg-gray-100 rounded-lg overflow-hidden shadow-md">
+            {videoId ? (
+              <iframe 
+                src={`https://www.youtube.com/embed/${videoId}`} 
+                title={item.data.title}
+                class="w-full h-[400px] border-none"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen
+              ></iframe>
+            ) : (
+                <div class="flex items-center justify-center h-full text-gray-400">Video niet beschikbaar</div>
+            )}
+          </div>
+          <div class="text-center">
+             <h2 class="text-2xl font-serif">{item.data.title}</h2>
+             {item.data.composer && <p class="text-sm font-sans uppercase tracking-widest text-gray-500 mt-2">{item.data.composer}</p>}
+          </div>
+        </article>
+      );
+    })}
+
+    {repertoire.length === 0 && (
+      <p class="text-center text-gray-500 italic">Er zijn momenteel geen opnames.</p>
+    )}
+  </div>
+</Layout>

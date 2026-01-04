@@ -32,6 +32,24 @@ content:
       - name: ticketLink
         label: Ticket Link
         type: string
+  - name: repertoire
+    label: Repertoire
+    path: src/content/repertoire
+    type: collection
+    view:
+      fields: [title, composer]
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: composer
+        label: Composer
+        type: string
+      - name: youtubeUrl
+        label: YouTube URL
+        type: string
+        required: true
   - name: biography
     label: Biography
     path: src/content/biography

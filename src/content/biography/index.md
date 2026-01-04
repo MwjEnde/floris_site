@@ -1,5 +1,5 @@
 ---
 title: "Biografie"
-portrait: "/assets/images/floris-portrait.jpg"
+portrait: "/floris_portrait.jpg"
 ---
 Floris is een gepassioneerd klassiek pianist...
