@@ -39,9 +39,21 @@ const homeCollection = defineCollection({
     }),
 });
 
+const uitvaartCollection = defineCollection({
+    type: 'content',
+    schema: z.object({
+        title: z.string(),
+        ctaTitle: z.string(),
+        ctaText: z.string(),
+        ctaButtonText: z.string(),
+        ctaButtonLink: z.string(),
+    }),
+});
+
 export const collections = {
     concerts: concertsCollection,
     biography: biographyCollection,
     repertoire: repertoireCollection,
     home: homeCollection,
+    uitvaart: uitvaartCollection,
 };

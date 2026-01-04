@@ -76,6 +76,32 @@ content:
       - name: body
         label: Short Bio (Text)
         type: rich-text
+  - name: uitvaart
+    label: Uitvaart (Funeral)
+    path: src/content/uitvaart
+    type: collection
+    view:
+      fields: [title]
+    fields:
+      - name: title
+        label: Page Title
+        type: string
+        required: true
+      - name: body
+        label: Main Text
+        type: rich-text
+      - name: ctaTitle
+        label: Contact Box Title
+        type: string
+      - name: ctaText
+        label: Contact Box Text
+        type: string
+      - name: ctaButtonText
+        label: Button Label
+        type: string
+      - name: ctaButtonLink
+        label: Button Link
+        type: string
   - name: biography
     label: Biography
     path: src/content/biography
