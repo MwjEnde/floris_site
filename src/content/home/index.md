@@ -3,7 +3,7 @@ title: Floris van den Ende
 heroImage: /images/Foris_piano_neutral.jpg
 ctaText: Bekijk Agenda
 ctaLink: /concerten
-metaTitle: Floris van den Ende | Klassiek Pianist
+metaTitle: Floris van den Ende | Pianist
 metaDescription: Welkom op de officiële website van Floris van den Ende.
   Klassiek pianist voor concerten, ceremonies en uitvaarten.
 ---
